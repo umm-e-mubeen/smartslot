@@ -1,0 +1,157 @@
+package com.example.slotsmart.ui;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.EditText;
+
+import androidx.appcompat.app.AlertDialog;
+
+import com.example.slotsmart.R;
+import com.example.slotsmart.model.ApiResponse;
+import com.example.slotsmart.model.EntityItem;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class CoursesFragment extends BaseEntityFragment {
+
+    private List<JsonObject> departments = new ArrayList<>();
+    private List<JsonObject> programs = new ArrayList<>();
+
+    @Override
+    protected String getListAction() { return "get_courses"; }
+
+    @Override
+    protected List<EntityItem> buildItems(JsonElement data) {
+        List<EntityItem> list = new ArrayList<>();
+        if (data == null) return list;
+        JsonElement rows = data;
+        if (data.isJsonObject() && data.getAsJsonObject().has("data")) {
+            rows = data.getAsJsonObject().get("data");
+        }
+        if (!rows.isJsonArray()) return list;
+        for (JsonElement el : rows.getAsJsonArray()) {
+            JsonObject o = el.getAsJsonObject();
+            list.add(new EntityItem(
+                    safe(o, "course_id"),
+                    safe(o, "course_code") + " – " + safe(o, "course_name"),
+                    safe(o, "credit_hours") + " · " + safe(o, "department_name"),
+                    null,
+                    o));
+        }
+        return list;
+    }
+
+    @Override
+    protected void onDataLoaded(JsonElement data) {
+        Map<String, String> f = new HashMap<>();
+        f.put("action", "get_dropdowns");
+        api.request(f).enqueue(new Callback<ApiResponse>() {
+            @Override
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.isSuccessful() && response.body() != null
+                        && response.body().data != null && response.body().data.isJsonObject()) {
+                    JsonObject obj = response.body().data.getAsJsonObject();
+                    departments.clear(); programs.clear();
+                    if (obj.has("departments"))
+                        for (JsonElement el : obj.get("departments").getAsJsonArray())
+                            departments.add(el.getAsJsonObject());
+                    if (obj.has("programs"))
+                        for (JsonElement el : obj.get("programs").getAsJsonArray())
+                            programs.add(el.getAsJsonObject());
+                }
+            }
+            @Override public void onFailure(Call<ApiResponse> call, Throwable t) {}
+        });
+    }
+
+    @Override
+    protected void showAddDialog() { showFormDialog("Add Course", null); }
+
+    @Override
+    protected void showEditDialog(EntityItem item) { showFormDialog("Edit Course", item); }
+
+    private void showFormDialog(String title, EntityItem item) {
+        View dialogView = LayoutInflater.from(requireContext())
+                .inflate(R.layout.dialog_course, null);
+        TextInputEditText etCode = dialogView.findViewById(R.id.etCourseCode);
+        TextInputEditText etName = dialogView.findViewById(R.id.etCourseName);
+        TextInputEditText etCredits = dialogView.findViewById(R.id.etCredits);
+        AutoCompleteTextView spinnerDept = dialogView.findViewById(R.id.spinnerCourseDept);
+        AutoCompleteTextView spinnerProg = dialogView.findViewById(R.id.spinnerCourseProgram);
+        EditText hiddenId = dialogView.findViewById(R.id.hiddenId);
+
+        List<String> deptNames = new ArrayList<>();
+        for (JsonObject d : departments) deptNames.add(safe(d, "department_name"));
+        spinnerDept.setAdapter(new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_dropdown_item_1line, deptNames));
+
+        List<String> progNames = new ArrayList<>() {{ add(""); }};
+        for (JsonObject p : programs) progNames.add(safe(p, "program_name"));
+        spinnerProg.setAdapter(new ArrayAdapter<>(requireContext(),
+                android.R.layout.simple_dropdown_item_1line, progNames));
+
+        if (item != null) {
+            etCode.setText(safe(item.raw, "course_code"));
+            etName.setText(safe(item.raw, "course_name"));
+            etCredits.setText(safe(item.raw, "credit_hours"));
+            spinnerDept.setText(safe(item.raw, "department_name"), false);
+            spinnerProg.setText(safe(item.raw, "program_name"), false);
+            hiddenId.setText(item.id);
+        }
+
+        new AlertDialog.Builder(requireContext())
+                .setTitle(title)
+                .setView(dialogView)
+                .setPositiveButton(R.string.save, (d, w) -> {
+                    String code = etCode.getText() != null ? etCode.getText().toString().trim() : "";
+                    String name = etName.getText() != null ? etName.getText().toString().trim() : "";
+                    String credits = etCredits.getText() != null ? etCredits.getText().toString().trim() : "3-0-3";
+                    String deptName = spinnerDept.getText().toString().trim();
+
+                    if (code.isEmpty() || name.isEmpty() || deptName.isEmpty()) {
+                        toast("Code, name and department are required."); return;
+                    }
+
+                    String deptId = "", progId = "";
+                    for (JsonObject dept : departments)
+                        if (safe(dept, "department_name").equals(deptName))
+                            deptId = safe(dept, "department_id");
+                    String progName = spinnerProg.getText().toString().trim();
+                    for (JsonObject prog : programs)
+                        if (safe(prog, "program_name").equals(progName))
+                            progId = safe(prog, "program_id");
+
+                    Map<String, String> fields = new HashMap<>();
+                    fields.put("action", item == null ? "add_course" : "update_course");
+                    if (item != null) fields.put("id", hiddenId.getText().toString());
+                    fields.put("course_code", code);
+                    fields.put("course_name", name);
+                    fields.put("credit_hours", credits);
+                    fields.put("department_id", deptId);
+                    if (!progId.isEmpty()) fields.put("program_id", progId);
+                    performRequest(fields, item == null ? "Course added!" : "Course updated!");
+                })
+                .setNegativeButton(R.string.cancel, null)
+                .show();
+    }
+
+    @Override
+    protected void deleteItem(EntityItem item) {
+        Map<String, String> fields = new HashMap<>();
+        fields.put("action", "delete_course");
+        fields.put("id", item.id);
+        performRequest(fields, "Course deleted!");
+    }
+}

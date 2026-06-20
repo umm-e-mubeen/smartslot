@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Active/Checked state: Blue background -->
+    <item android:state_checked="true" android:color="#0D6EFD" />
+
+    <!-- Default state: Transparent (shows the light gray background) -->
+    <item android:color="@android:color/transparent" />
+</selector>

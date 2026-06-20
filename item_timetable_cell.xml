@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="140dp"
+    android:layout_height="wrap_content"
+    android:minHeight="120dp"
+    android:layout_margin="3dp"
+    app:cardCornerRadius="6dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/success_light"
+    app:strokeColor="@color/success"
+    app:strokeWidth="2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:gravity="top">
+
+        <!-- Course Code and Type Badge -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/tvCourseCode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CS-101"
+                android:textColor="@color/text_primary"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end" />
+
+            <TextView
+                android:id="@+id/tvComponentType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="LEC"
+                android:textColor="@color/success"
+                android:textSize="8sp"
+                android:textStyle="bold"
+                android:paddingStart="4dp"
+                android:paddingEnd="4dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:background="@drawable/badge_bg" />
+        </LinearLayout>
+
+        <!-- Course Name -->
+        <TextView
+            android:id="@+id/tvCourseName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Programming"
+            android:textColor="@color/text_primary"
+            android:textSize="10sp"
+            android:textStyle="bold"
+            android:layout_marginTop="3dp"
+            android:maxLines="2"
+            android:ellipsize="end" />
+
+        <!-- Faculty Name -->
+        <TextView
+            android:id="@+id/tvFacultyName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="👤 Dr. Smith"
+            android:textColor="@color/text_secondary"
+            android:textSize="9sp"
+            android:layout_marginTop="4dp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- Program Name -->
+        <TextView
+            android:id="@+id/tvProgramName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📚 BSCS"
+            android:textColor="@color/text_secondary"
+            android:textSize="9sp"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- Credits and Room -->
+        <TextView
+            android:id="@+id/tvCreditsRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🏫 R-301 • 3-0-3"
+            android:textColor="@color/text_secondary"
+            android:textSize="9sp"
+            android:layout_marginTop="2dp"
+            android:maxLines="1"
+            android:ellipsize="end" />
+
+        <!-- Enrollment Progress Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/tvEnrollment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="25/30 (83%)"
+                android:textColor="@color/text_secondary"
+                android:textSize="8sp"
+                android:gravity="end" />
+
+            <ProgressBar
+                android:id="@+id/progressEnrollment"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="4dp"
+                android:layout_marginTop="2dp"
+                android:progress="83"
+                android:max="100" />
+        </LinearLayout>
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

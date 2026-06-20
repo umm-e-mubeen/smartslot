@@ -1,0 +1,55 @@
+<resources>
+    <string name="app_name">SlotSmart</string>
+    <string name="admin_login">Admin Login</string>
+    <string name="email_hint">admin@slotsmart.com</string>
+    <string name="password_hint">Password</string>
+    <string name="login_button">Secure Login</string>
+    <string name="login_error">Invalid email or password.</string>
+    <string name="nav_header_title">SlotSmart Admin</string>
+    <string name="nav_header_subtitle">admin@slotsmart.com</string>
+
+    <string name="nav_timetable">Timetable</string>
+    <string name="nav_students">Students</string>
+    <string name="nav_faculty">Faculty</string>
+    <string name="nav_rooms">Rooms</string>
+    <string name="nav_slots">Time Slots</string>
+    <string name="nav_allocations">Allocations</string>
+    <string name="nav_enrollments">Enrollments</string>
+    <string name="nav_departments">Departments</string>
+    <string name="nav_programs">Programs</string>
+    <string name="nav_courses">Courses</string>
+    <string name="nav_logout">Logout</string>
+
+    <string name="add">Add</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="search_hint">Search&#8230;</string>
+    <string name="empty_list">No records found.\n\n💡 Tip: Use web admin panel for CSV bulk uploads.</string>
+    <string name="loading">Loading&#8230;</string>
+    <string name="delete_confirm">Are you sure you want to delete this record?</string>
+    <string name="server_url_hint">http://10.0.2.2/Slotsmart-1/</string>
+
+    <string name="label_name">Name</string>
+    <string name="label_department">Department</string>
+    <string name="label_program">Program</string>
+    <string name="label_email">Email</string>
+    <string name="label_phone">Phone</string>
+    <string name="label_reg_no">Registration No.</string>
+    <string name="label_dob">Date of Birth</string>
+    <string name="label_gender">Gender</string>
+    <string name="label_student_type">Student Type</string>
+    <string name="label_course_code">Course Code</string>
+    <string name="label_course_name">Course Name</string>
+    <string name="label_credits">Credits (T-P-C)</string>
+    <string name="label_day">Day</string>
+    <string name="label_start_time">Start Time</string>
+    <string name="label_end_time">End Time</string>
+    <string name="label_session">Session</string>
+    <string name="label_faculty">Faculty</string>
+    <string name="label_course">Course</string>
+    <string name="label_student">Student</string>
+    <string name="label_batch_year">Batch Year</string>
+    <string name="label_semester">Semester</string>
+</resources>

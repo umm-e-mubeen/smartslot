@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Info Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="#D1ECF1"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/tvEditInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Course: Data Structures\nFaculty: Dr. Smith"
+                android:textColor="#0C5460"
+                android:textSize="14sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Room Selection -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:hint="Room"
+        app:startIconDrawable="@android:drawable/ic_menu_mylocation">
+
+        <AutoCompleteTextView
+            android:id="@+id/spinnerEditRoom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Time Slot Selection -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+        android:hint="Time Slot"
+        app:startIconDrawable="@android:drawable/ic_menu_recent_history">
+
+        <AutoCompleteTextView
+            android:id="@+id/spinnerEditSlot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textSize="15sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Conflict Warning (hidden by default) -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/conflictCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:cardBackgroundColor="#F8D7DA"
+        app:cardCornerRadius="6dp"
+        app:cardElevation="0dp">
+
+        <TextView
+            android:id="@+id/tvConflictWarning"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="12dp"
+            android:text="⚠️ Conflict detected!"
+            android:textColor="#721C24"
+            android:textSize="13sp" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Hidden fields -->
+    <EditText
+        android:id="@+id/hiddenTimetableId"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:importantForAutofill="no"
+        android:inputType="none" />
+
+</LinearLayout>

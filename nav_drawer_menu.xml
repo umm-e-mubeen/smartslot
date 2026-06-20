@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_departments"
+            android:icon="@android:drawable/ic_menu_manage"
+            android:title="@string/nav_departments" />
+        <item
+            android:id="@+id/nav_programs"
+            android:icon="@android:drawable/ic_menu_sort_by_size"
+            android:title="@string/nav_programs" />
+        <item
+            android:id="@+id/nav_courses"
+            android:icon="@android:drawable/ic_menu_info_details"
+            android:title="@string/nav_courses" />
+        <item
+            android:id="@+id/nav_faculty"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/nav_faculty" />
+        <item
+            android:id="@+id/nav_students"
+            android:icon="@android:drawable/ic_menu_myplaces"
+            android:title="@string/nav_students" />
+        <item
+            android:id="@+id/nav_rooms"
+            android:icon="@android:drawable/ic_menu_mylocation"
+            android:title="@string/nav_rooms" />
+        <item
+            android:id="@+id/nav_slots"
+            android:icon="@android:drawable/ic_menu_recent_history"
+            android:title="@string/nav_slots" />
+        <item
+            android:id="@+id/nav_allocations"
+            android:icon="@android:drawable/ic_menu_agenda"
+            android:title="@string/nav_allocations" />
+        <item
+            android:id="@+id/nav_enrollments"
+            android:icon="@android:drawable/ic_menu_edit"
+            android:title="@string/nav_enrollments" />
+    </group>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_timetable"
+                android:icon="@android:drawable/ic_menu_view"
+                android:title="@string/nav_timetable" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@android:drawable/ic_menu_close_clear_cancel"
+                android:title="@string/nav_logout" />
+        </menu>
+    </item>
+
+</menu>

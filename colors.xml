@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Brand Colors (matches web) -->
+    <color name="primary">#0D6EFD</color>
+    <color name="primary_dark">#0A58CA</color>
+    <color name="primary_light">#CCE5FF</color>
+    <color name="sidebar_dark">#212529</color>
+    <color name="background">#F8F9FA</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="success">#198754</color>
+    <color name="success_light">#D1E7DD</color>
+    <color name="warning">#FFC107</color>
+    <color name="danger">#DC3545</color>
+    <color name="text_primary">#212529</color>
+    <color name="text_secondary">#6C757D</color>
+    <color name="divider">#DEE2E6</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="nav_header_start">#0D6EFD</color>
+    <color name="nav_header_end">#0A58CA</color>
+</resources>
